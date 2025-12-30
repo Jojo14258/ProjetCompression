@@ -1,5 +1,7 @@
 from listDoublementChaine import ListChaineDouble
 from Noeud import Noeud
+from ArbreHuffman import ArbreHuffman
+
 
 def Analyser_frequence_texte(file):
     listeDoublementChainee = ListChaineDouble()
@@ -14,6 +16,59 @@ def Analyser_frequence_texte(file):
     
     listeDoublementChainee.trier_par_frequence()
     return listeDoublementChainee
+
+def construire_arbre_huffman(liste_freq):
+    """Construit l'arbre de Huffman à partir des fréquences.
+    
+    Algorithme simple :
+    1. Tant qu'il reste plus d'un noeud dans la liste
+    2. Prendre les 2 noeuds avec les plus petites fréquences
+    3. Créer un noeud parent avec ces 2 noeuds comme enfants
+    4. Réinsérer le parent dans la liste
+    5. Le dernier noeud est la racine de l'arbre
+    
+    Args:
+        liste_freq (ListChaineDouble): Liste triée des noeuds par fréquence
+        
+    Returns:
+        ArbreHuffman: L'arbre de Huffman construit
+    """
+    
+    # Tant qu'il reste plus d'un noeud
+    while liste_freq.taille > 1:
+        
+        # Étape 1 : Retirer le premier noeud (plus petite fréquence)
+        noeud1 = liste_freq.tete
+        liste_freq.tete = noeud1.suivant
+        if liste_freq.tete:
+            liste_freq.tete.precedent = None
+        liste_freq.taille -= 1
+        
+        # Étape 2 : Retirer le deuxième noeud (deuxième plus petite fréquence)
+        noeud2 = liste_freq.tete
+        liste_freq.tete = noeud2.suivant
+        if liste_freq.tete:
+            liste_freq.tete.precedent = None
+        liste_freq.taille -= 1
+        
+        # Étape 3 : Créer un noeud parent
+        # La fréquence du parent = somme des fréquences des enfants
+        frequence_parent = noeud1.frequence + noeud2.frequence
+        
+        # Le parent a une valeur None (c'est un noeud interne, pas une feuille)
+        # Les enfants sont noeud1 (gauche) et noeud2 (droite)
+        parent = Noeud(None, frequence_parent, gauche=noeud1, droit=noeud2)
+        
+        # Étape 4 : Réinsérer le parent dans la liste
+        liste_freq.append(parent)
+        
+        # Étape 5 : Re-trier la liste pour maintenir l'ordre
+        liste_freq.trier_par_frequence()
+    
+    # À la fin, il ne reste qu'un noeud : la racine de l'arbre
+    arbre = ArbreHuffman(liste_freq.tete)
+    return arbre
+
 
 
 if __name__ == "__main__":
