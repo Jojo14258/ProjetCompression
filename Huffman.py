@@ -43,6 +43,9 @@ def construire_arbre_huffman(liste_freq):
         if liste_freq.tete:
             liste_freq.tete.precedent = None
         liste_freq.taille -= 1
+        # Nettoyer les liens de la liste
+        noeud1.suivant = None
+        noeud1.precedent = None
         
         # Étape 2 : Retirer le deuxième noeud (deuxième plus petite fréquence)
         noeud2 = liste_freq.tete
@@ -50,6 +53,9 @@ def construire_arbre_huffman(liste_freq):
         if liste_freq.tete:
             liste_freq.tete.precedent = None
         liste_freq.taille -= 1
+        # Nettoyer les liens de la liste
+        noeud2.suivant = None
+        noeud2.precedent = None
         
         # Étape 3 : Créer un noeud parent
         # La fréquence du parent = somme des fréquences des enfants
@@ -60,7 +66,7 @@ def construire_arbre_huffman(liste_freq):
         parent = Noeud(None, frequence_parent, gauche=noeud1, droit=noeud2)
         
         # Étape 4 : Réinsérer le parent dans la liste
-        liste_freq.append(parent)
+        liste_freq.append_noeud(parent)
         
         # Étape 5 : Re-trier la liste pour maintenir l'ordre
         liste_freq.trier_par_frequence()
@@ -96,12 +102,43 @@ if __name__ == "__main__":
             print(f"   Octet {actuel.valeur}: {actuel.frequence} fois")
         actuel = actuel.suivant
     
-    print("\n=== Test terminé ===\n")
+    # Test de construction de l'arbre de Huffman
+    print("\n4. Construction de l'arbre de Huffman...")
+    arbre = construire_arbre_huffman(liste_freq)
+    if arbre.est_vide():
+        print("   [ERREUR] L'arbre est vide!")
+    else:
+        print("   [OK] Arbre de Huffman construit avec succès!")
+        print(f"   Racine de l'arbre: fréquence = {arbre.racine.frequence}")
+    
+    # Visualisation de l'arbre
+    print("\n4.5. Visualisation de l'arbre:")
+    arbre.afficher()
+    
+    # Test de génération des codes
+    print("\n5. Génération des codes de Huffman...")
+    codes = arbre.generer_codes()
+    print("   Codes générés:")
+    
+    actuel_code = codes.tete
+    while actuel_code:
+        # actuel_code.valeur = le caractère (bytes)
+        # actuel_code.frequence = le code binaire (string)
+        if actuel_code.valeur and isinstance(actuel_code.valeur, bytes):
+            if 32 <= actuel_code.valeur[0] <= 126:
+                print(f"   '{actuel_code.valeur.decode()}' → {actuel_code.frequence}")
+            else:
+                print(f"   Octet {actuel_code.valeur[0]} → {actuel_code.frequence}")
+        actuel_code = actuel_code.suivant
+    
+    print("\n=== Tous les tests terminés ===\n")
     
     # Résultat attendu pour "ABRACADABRA":
-    # A: 5 fois
-    # B: 2 fois  
-    # R: 2 fois
-    # C: 1 fois
-    # D: 1 fois
-    # Ordre après tri: C(1), D(1), B(2), R(2), A(5)
+    # Fréquences: C(1), D(1), B(2), R(2), A(5)
+    # 
+    # Codes possibles (selon construction):
+    # A: 0 (car la plus fréquente)
+    # B: 110
+    # R: 111
+    # C: 100
+    # D: 101

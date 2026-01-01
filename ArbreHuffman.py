@@ -8,9 +8,8 @@ from Noeud import Noeud
 
 class ArbreHuffman:
     """Arbre de Huffman simple pour la compression.
-    
-    L'arbre de Huffman n'est PAS un arbre binaire de recherche.
-    C'est un arbre où chaque feuille contient un caractère avec sa fréquence.
+
+    Arbre où chaque feuille contient un caractère avec sa fréquence.
     """
     
     def __init__(self, racine=None):
@@ -62,11 +61,70 @@ class ArbreHuffman:
         if noeud.gauche is None and noeud.droit is None:
             # Créer un noeud pour stocker : (caractère, code)
             noeud_code = Noeud(noeud.valeur, code_actuel)
-            codes.append(noeud_code)
+            codes.append_noeud(noeud_code)
             return
         
         # Sinon, continuer à descendre dans l'arbre
         # Gauche = ajouter '0'
         self._generer_codes_recursif(noeud.gauche, code_actuel + "0", codes)
         # Droite = ajouter '1'
-        self._generer_codes_recursif(noeud.droit, code_actuel + "1", codes)
+        self._generer_codes_recursif(noeud.droit, code_actuel + "1", codes)    
+    def afficher(self):
+        """Affiche l'arbre de Huffman de manière visuelle.
+        
+        Affiche l'arbre avec une indentation pour montrer la hiérarchie.
+        Format : [freq] valeur
+        """
+        if self.est_vide():
+            print("Arbre vide")
+            return
+        
+        print("=== Structure de l'arbre de Huffman ===\n")
+        self._afficher_recursif(self.racine, "", True)
+        print()
+    
+    def _afficher_recursif(self, noeud, prefixe, est_dernier):
+        """Fonction récursive privée pour afficher l'arbre.
+        
+        Args:
+            noeud (Noeud): Le noeud actuel
+            prefixe (str): Le préfixe d'indentation
+            est_dernier (bool): Si c'est le dernier enfant
+        """
+        if noeud is None:
+            return
+        
+        # Afficher le noeud actuel
+        print(prefixe, end="")
+        
+        # Symbole de branche
+        if est_dernier:
+            print("└── ", end="")
+            nouveau_prefixe = prefixe + "    "
+        else:
+            print("├── ", end="")
+            nouveau_prefixe = prefixe + "│   "
+        
+        # Afficher la fréquence et la valeur
+        if noeud.valeur is None:
+            # Noeud interne (pas de valeur)
+            print(f"[{noeud.frequence}] (noeud interne)")
+        else:
+            # Feuille (avec caractère)
+            if isinstance(noeud.valeur, bytes):
+                if 32 <= noeud.valeur[0] <= 126:
+                    print(f"[{noeud.frequence}] '{noeud.valeur.decode()}'")
+                else:
+                    print(f"[{noeud.frequence}] octet {noeud.valeur[0]}")
+            else:
+                print(f"[{noeud.frequence}] {noeud.valeur}")
+        
+        # Afficher les enfants
+        if noeud.gauche is not None or noeud.droit is not None:
+            # Afficher le fils gauche
+            if noeud.gauche is not None:
+                self._afficher_recursif(noeud.gauche, nouveau_prefixe, noeud.droit is None)
+            
+            # Afficher le fils droit
+            if noeud.droit is not None:
+                self._afficher_recursif(noeud.droit, nouveau_prefixe, True)

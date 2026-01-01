@@ -62,6 +62,30 @@ class ListChaineDouble:
             return True
         except Exception:
             return False
+    
+    def append_noeud(self, noeud):
+        """Ajoute un noeud directement à la fin de la liste (sans le wrapper).
+        
+        Utilisé pour l'arbre de Huffman où on veut garder le noeud tel quel.
+        
+        Args:
+            noeud (Noeud): Le noeud à ajouter directement
+            
+        Returns:
+            bool: True si succès
+        """
+        try:
+            if self.est_vide():
+                self.tete = noeud
+                self.fin = noeud
+            else:
+                self.fin.suivant = noeud
+                noeud.precedent = self.fin
+                self.fin = noeud
+            self.taille += 1
+            return True
+        except Exception:
+            return False
 
     def prepend(self, val):
         """Ajoute `val` en tête de liste. Retourne True si OK."""
@@ -154,10 +178,12 @@ class ListChaineDouble:
                     
                     suivant = suivant.suivant
                 
-                # Échanger les valeurs ET les fréquences
+                # Échanger les valeurs, fréquences ET les enfants (pour l'arbre de Huffman)
                 if minimum != actuel:
                     actuel.valeur, minimum.valeur = minimum.valeur, actuel.valeur
                     actuel.frequence, minimum.frequence = minimum.frequence, actuel.frequence
+                    actuel.gauche, minimum.gauche = minimum.gauche, actuel.gauche
+                    actuel.droit, minimum.droit = minimum.droit, actuel.droit
                 
                 actuel = actuel.suivant
             
