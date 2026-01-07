@@ -76,69 +76,77 @@ def construire_arbre_huffman(liste_freq):
     return arbre
 
 
+def encoder(codes, contenuFichier, fichier_sortie):
+    """Encode le contenu du fichier avec les codes de Huffman.
+    
+    Args:
+        codes: Liste chaînée des codes de Huffman
+        contenuFichier: Liste chaînée du contenu à encoder
+        fichier_sortie: Nom du fichier de sortie
+    """
+    # TODO: À implémenter
+    liste = ListChaineDouble()
+    actuel_contenu = contenuFichier.tete
+    texte_binaire = ""
+    while actuel_contenu:
+        octet_a_encoder = actuel_contenu.valeur  # Le byte à encoder
+
+        # On cherche le code de cet octet dans la liste des codes
+        actuel_code = codes.tete
+        code_trouve = None
+        
+        while actuel_code:
+          
+            if actuel_code.valeur == octet_a_encoder:  
+                code_trouve = actuel_code.frequence  # Le code binaire (string "0101...")
+                print("code: ", code_trouve)
+                break
+            actuel_code = actuel_code.suivant
+
+         # Ajouter le code trouvé
+        if code_trouve:
+            texte_binaire += code_trouve
+        
+        actuel_contenu = actuel_contenu.suivant
+    
+    # Afficher pour debug
+    print(f"Texte encodé: {texte_binaire}")
+    print(f"Longueur: {len(texte_binaire)} bits")
+       
+    return
+
+def compresser_fichier(fichier_entree, fichier_sortie):
+    # Analyser les fréquences du fichier
+    listeFreq = Analyser_frequence_texte(fichier_entree)
+    
+    # Construire l'arbre de Huffman
+    arbre = construire_arbre_huffman(listeFreq)
+    
+    # Génére les codes
+    codes = arbre.generer_codes()
+    
+    # Lire le contenu du fichier à encoder
+    contenuFichier = ListChaineDouble()
+    with open(fichier_entree, 'rb') as fichier:
+        octet = fichier.read(1)
+        while octet:
+            contenuFichier.append(octet)
+            octet = fichier.read(1)
+    
+    # Encoder le fichier
+    encoder(codes, contenuFichier, fichier_sortie)
+
+
 
 if __name__ == "__main__":
-    print("=== Test de l'analyseur de fréquences ===\n")
+    print("=== Test de compression Huffman ===\n")
     
     # Créer un fichier de test
-    print("1. Création d'un fichier de test...")
     with open("test.txt", "w") as f:
         f.write("ABRACADABRA")
-    print("   Fichier créé: 'test.txt' contenant 'ABRACADABRA'\n")
+    print("[OK] Fichier de test créé: 'test.txt'\n")
     
-    # Analyser les fréquences
-    print("2. Analyse des fréquences...")
-    liste_freq = Analyser_frequence_texte("test.txt")
-    print(f"   Liste des fréquences: {liste_freq}\n")
+    # Test de la fonction compresser_fichier
+    compresser_fichier("./test.txt", "test.compressed")
     
-    # Afficher les détails
-    print("3. Détails des fréquences:")
-    actuel = liste_freq.tete
-    while actuel:
-        # Afficher le caractère si imprimable
-        if 32 <= actuel.valeur[0] <= 126:  # Si c'est imprimable
-            print(f"   '{actuel.valeur.decode()}' (octet {actuel.valeur[0]}): {actuel.frequence} fois")
-        else:
-            print(f"   Octet {actuel.valeur}: {actuel.frequence} fois")
-        actuel = actuel.suivant
-    
-    # Test de construction de l'arbre de Huffman
-    print("\n4. Construction de l'arbre de Huffman...")
-    arbre = construire_arbre_huffman(liste_freq)
-    if arbre.est_vide():
-        print("   [ERREUR] L'arbre est vide!")
-    else:
-        print("   [OK] Arbre de Huffman construit avec succès!")
-        print(f"   Racine de l'arbre: fréquence = {arbre.racine.frequence}")
-    
-    # Visualisation de l'arbre
-    print("\n4.5. Visualisation de l'arbre:")
-    arbre.afficher()
-    
-    # Test de génération des codes
-    print("\n5. Génération des codes de Huffman...")
-    codes = arbre.generer_codes()
-    print("   Codes générés:")
-    
-    actuel_code = codes.tete
-    while actuel_code:
-        # actuel_code.valeur = le caractère (bytes)
-        # actuel_code.frequence = le code binaire (string)
-        if actuel_code.valeur and isinstance(actuel_code.valeur, bytes):
-            if 32 <= actuel_code.valeur[0] <= 126:
-                print(f"   '{actuel_code.valeur.decode()}' → {actuel_code.frequence}")
-            else:
-                print(f"   Octet {actuel_code.valeur[0]} → {actuel_code.frequence}")
-        actuel_code = actuel_code.suivant
-    
-    print("\n=== Tous les tests terminés ===\n")
-    
-    # Résultat attendu pour "ABRACADABRA":
-    # Fréquences: C(1), D(1), B(2), R(2), A(5)
-    # 
-    # Codes possibles (selon construction):
-    # A: 0 (car la plus fréquente)
-    # B: 110
-    # R: 111
-    # C: 100
-    # D: 101
+    print("\n=== Fin du test ===")
