@@ -75,45 +75,73 @@ def construire_arbre_huffman(liste_freq):
     arbre = ArbreHuffman(liste_freq.tete)
     return arbre
 
-
-def encoder(codes, contenuFichier, fichier_sortie):
-    """Encode le contenu du fichier avec les codes de Huffman.
+def bits_vers_octets(texte_binaire):
+    """Convertit une chaîne de bits en octets.
     
     Args:
-        codes: Liste chaînée des codes de Huffman
-        contenuFichier: Liste chaînée du contenu à encoder
-        fichier_sortie: Nom du fichier de sortie
+        texte_binaire (str): Chaîne de '0' et '1'
+        
+    Returns:
+        tuple: (liste d'octets, nombre de bits de padding)
     """
-    # TODO: À implémenter
-    liste = ListChaineDouble()
+    longueur = len(texte_binaire)
+    bits_manquants = (8 - (longueur % 8)) % 8
+    
+    if bits_manquants > 0:
+        texte_binaire += '0' * bits_manquants
+    
+    octets = ListChaineDouble()
+    
+    for i in range(0, len(texte_binaire), 8):
+        groupe = texte_binaire[i:i+8]
+        valeur = int(groupe, 2)
+        octets.append(valeur)
+    
+    return octets, bits_manquants
+
+def encoder(codes, contenuFichier, fichier_sortie):
+    """Encode le contenu avec les codes de Huffman et écrit le fichier compressé.
+    
+    Args:
+        codes: Table de codes (ListChaineDouble)
+        contenuFichier: Contenu à compresser (ListChaineDouble)
+        fichier_sortie: Chemin du fichier de sortie
+    """
     actuel_contenu = contenuFichier.tete
     texte_binaire = ""
+    
+    # Construction de la chaîne binaire complète
     while actuel_contenu:
-        octet_a_encoder = actuel_contenu.valeur  # Le byte à encoder
+        octet_a_encoder = actuel_contenu.valeur
 
-        # On cherche le code de cet octet dans la liste des codes
+        # Recherche du code correspondant
         actuel_code = codes.tete
         code_trouve = None
         
         while actuel_code:
-          
             if actuel_code.valeur == octet_a_encoder:  
-                code_trouve = actuel_code.frequence  # Le code binaire (string "0101...")
-                print("code: ", code_trouve)
+                code_trouve = actuel_code.frequence
                 break
             actuel_code = actuel_code.suivant
 
-         # Ajouter le code trouvé
         if code_trouve:
             texte_binaire += code_trouve
         
         actuel_contenu = actuel_contenu.suivant
     
-    # Afficher pour debug
-    print(f"Texte encodé: {texte_binaire}")
-    print(f"Longueur: {len(texte_binaire)} bits")
-       
-    return
+    # Conversion bits -> octets
+    octets_compresses, padding = bits_vers_octets(texte_binaire)
+    
+    # Écriture du fichier : [padding][données compressées]
+    with open(fichier_sortie, 'wb') as fichier:
+        fichier.write(bytes([padding]))
+        
+        actuel_octet = octets_compresses.tete
+        while actuel_octet:
+            fichier.write(bytes([actuel_octet.valeur]))
+            actuel_octet = actuel_octet.suivant
+    
+    return octets_compresses.taille
 
 def compresser_fichier(fichier_entree, fichier_sortie):
     # Analyser les fréquences du fichier
@@ -141,12 +169,30 @@ def compresser_fichier(fichier_entree, fichier_sortie):
 if __name__ == "__main__":
     print("=== Test de compression Huffman ===\n")
     
-    # Créer un fichier de test
+    # Création du fichier test
+    contenu_test = "ABRACADABRA"
     with open("test.txt", "w") as f:
-        f.write("ABRACADABRA")
-    print("[OK] Fichier de test créé: 'test.txt'\n")
+        f.write(contenu_test)
+    print(f"Fichier créé: 'test.txt' ({len(contenu_test)} caractères)\n")
     
-    # Test de la fonction compresser_fichier
+    # Compression
     compresser_fichier("./test.txt", "test.compressed")
     
-    print("\n=== Fin du test ===")
+    # Vérification
+    import os
+    taille_originale = os.path.getsize("test.txt")
+    taille_compressee = os.path.getsize("test.compressed")
+    ratio = (1 - taille_compressee / taille_originale) * 100
+    
+    print(f"\n=== Résultats ===")
+    print(f"Taille originale: {taille_originale} octets")
+    print(f"Taille compressée: {taille_compressee} octets")
+    print(f"Taux de compression: {ratio:.1f}%")
+    
+    # Lecture du fichier compressé pour vérification
+    with open("test.compressed", "rb") as f:
+        padding = f.read(1)[0]
+        donnees = f.read()
+        print(f"\nPadding stocké: {padding} bits")
+        print(f"Données compressées: {len(donnees)} octets")
+        print(f"Premiers octets: {' '.join(f'{b:02x}' for b in donnees[:5])}...")
