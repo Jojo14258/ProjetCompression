@@ -1,0 +1,140 @@
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.
+Le codage de Huffman est un algorithme de compression de donnees sans perte.
+Il a ete developpe par David Huffman en 1952. Cette methode utilise un arbre binaire 
+pour representer les caracteres les plus frequents avec moins de bits. Les caracteres 
+rares utilisent plus de bits. C'est un codage a longueur variable optimal.
+L'algorithme construit un arbre en fusionnant les deux noeuds de plus faible frequence.
+Il remonte ensuite l'arbre pour generer les codes binaires de chaque caractere.
+La compression est efficace sur les textes avec des caracteres repetitifs.

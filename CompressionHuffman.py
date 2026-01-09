@@ -129,13 +129,41 @@ def encoder(codes, contenuFichier, fichier_sortie):
         
         actuel_contenu = actuel_contenu.suivant
     
-    # Conversion bits -> octets
-    octets_compresses, padding = bits_vers_octets(texte_binaire)
+   
     
-    # Écriture du fichier : [padding][données compressées]
+    # Écriture du fichier : [table des codes][padding][données compressées]
     with open(fichier_sortie, 'wb') as fichier:
+        # 1. Écrie le nombre de codes dans la table
+        fichier.write(bytes([codes.taille]))
+        
+        # 2. Écrie chaque code : [valeur][longueur][code en bits]
+        actuel_code = codes.tete
+        while actuel_code:
+            valeur = actuel_code.valeur[0]  # Le byte (premier élément du bytes)
+            code_bits = actuel_code.frequence  # La chaîne de bits "010110..."
+            longueur_code = len(code_bits)
+            
+            # Écrie la valeur (1 octet)
+            fichier.write(bytes([valeur]))
+            
+            # Écrie la longueur du code (1 octet)
+            fichier.write(bytes([longueur_code]))
+            
+            # Convertie le code en octets et écrire
+            code_octets, _ = bits_vers_octets(code_bits)
+            actuel_octet_code = code_octets.tete
+            while actuel_octet_code:
+                fichier.write(bytes([actuel_octet_code.valeur]))
+                actuel_octet_code = actuel_octet_code.suivant
+            
+            actuel_code = actuel_code.suivant
+
+        # Conversion bits -> octets
+        octets_compresses, padding = bits_vers_octets(texte_binaire)        
+        # 3. Écrire le padding
         fichier.write(bytes([padding]))
         
+        # 4. Écrire les données compressées
         actuel_octet = octets_compresses.tete
         while actuel_octet:
             fichier.write(bytes([actuel_octet.valeur]))
